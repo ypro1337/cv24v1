@@ -1,9 +1,11 @@
 package fr.univrouen.cv24v1.controllers;
 
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.web.bind.annotation.*;
+
+
+import fr.univrouen.cv24v1.model.TestCV;
+import jakarta.ws.rs.core.MediaType;
 
 
 @RestController
@@ -14,6 +16,14 @@ public class PostController {
 			return ("<result><response>Message reçu : </response>" 
 			+ flux + "</result>");
 			}
+	
+	@RequestMapping(value="/testxml", produces=MediaType.APPLICATION_XML)
+	public @ResponseBody TestCV getXML() {
+	TestCV cv = new TestCV("HAMILTON","Margaret","1969/07/21", 
+	"Appollo11@nasa.us");
+	return cv;
+	}
+
 
 	
 }
