@@ -15,4 +15,12 @@ public String getCVinXML(
 @RequestParam(value = "texte") String texte) {
 return ("Détail du CV n°" + texte);
 }
+@GetMapping("/test")
+public String getTestData(
+@RequestParam(value = "id") int id,
+@RequestParam(value = "titre") String titre)
+{ // Params order is irrelevant / if one or many params are missing we get a White Laber Error Page
+return ("Test :<br>id = "+ id + "<br>titre = " + titre);
+}
+
 }
