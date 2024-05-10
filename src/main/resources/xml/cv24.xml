@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cv:cv24 xmlns:cv="http://univrouen.fr/cv24v1/model" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://univrouen.fr/cv24v1/model cv24.xsd">
+  <cv:identite>
+    <cv:genre>M.</cv:genre>
+    <cv:nom>MOKRANI</cv:nom>
+    <cv:prenom>Yahia</cv:prenom>
+    <cv:tel>+33 6 68 77 67 22</cv:tel>
+    <cv:mel>yahia.mokrani@univ-rouen.fr</cv:mel>
+  </cv:identite>
+  <cv:objectif statut="stage">Web Dev</cv:objectif>
+  <cv:prof>
+    <cv:detail>
+      <cv:datedeb>2024-01-12T09:30:00Z</cv:datedeb>
+      <cv:datefin>2024-05-16T09:30:00Z</cv:datefin>
+      <cv:titre>Projet Quantique </cv:titre>
+    </cv:detail>
+    <cv:detail>
+      <cv:datedeb>2024-01-12T09:30:00Z</cv:datedeb>
+      <cv:datefin>2024-08-16T09:30:00Z</cv:datefin>
+      <cv:titre>Projet XML </cv:titre>
+    </cv:detail>
+    <cv:detail>
+      <cv:datedeb>2024-01-12T09:30:00Z</cv:datedeb>
+      <cv:datefin>2024-09-16T09:30:00Z</cv:datefin>
+      <cv:titre>Projet Theorie des jeux </cv:titre>
+    </cv:detail>
+     <cv:detail>
+      <cv:datedeb>2023-12-20T12:30:00Z</cv:datedeb>
+      <cv:datefin>2024-01-20T20:30:00Z</cv:datefin>
+      <cv:titre>Projet Terminologio </cv:titre>
+    </cv:detail>
+  </cv:prof>
+  
+  <cv:competences>
+    <cv:diplome niveau="5">
+      <cv:date>2025-06-30T09:30:00Z</cv:date>
+      <cv:institut>Univ Rouen</cv:institut>
+    </cv:diplome>
+    <cv:certif>
+      <cv:datedeb>2023-10-21T09:30:00Z</cv:datedeb>
+      <cv:datefin>2025-10-21T09:30:00Z</cv:datefin>
+      <cv:titre>Docker Certified Associate</cv:titre>
+    </cv:certif>
+    <cv:certif>
+      <cv:datedeb>2023-12-21T09:30:00Z</cv:datedeb>
+      <cv:datefin>2025-10-21T09:30:00Z</cv:datefin>
+      <cv:titre>Cisco Networking</cv:titre>
+    </cv:certif>
+  </cv:competences>
+  <cv:divers>
+    <cv:lv cert="CLES" lang="Anglais" nivs="B2"/>
+    <cv:lv cert="MAT" lang="Francais" />
+    <cv:autre comment="B" titre="Permis de Conduire"/>
+    <cv:autre comment="8ans" titre="Handball"/>
+  </cv:divers>
+</cv:cv24>

@@ -11,10 +11,6 @@ public class IndexController {
 public String index() {
 return "Hello cv24 !";
 }
-//adding a basic PostMapping displaying the request body
-@PostMapping("/")
-public String handlePostRequest(@RequestBody String requestBody) {
-    return "Received POST request with body: " + requestBody;
-}
+
 }
 
