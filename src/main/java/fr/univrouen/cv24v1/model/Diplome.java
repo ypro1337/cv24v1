@@ -14,6 +14,9 @@ import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * <p>Java class for diplome complex type.
@@ -38,8 +41,9 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "diplome", propOrder = {
-    "date",
-    "institut"
+        "date",
+        "institut",
+        "titre"
 })
 public class Diplome {
 
@@ -48,6 +52,9 @@ public class Diplome {
     protected String institut;
     @XmlAttribute(name = "niveau", required = true)
     protected int niveau;
+
+    @XmlElement(required = true)
+    private List<String> titre;
 
     /**
      * Gets the value of the date property.
@@ -95,6 +102,17 @@ public class Diplome {
      */
     public void setInstitut(String value) {
         this.institut = value;
+    }
+
+    public List<String> getTitre() {
+        if (titre == null) {
+            titre = new ArrayList<>();
+        }
+        return this.titre;
+    }
+
+    public void setTitre(List<String> titre) {
+        this.titre = titre;
     }
 
     /**

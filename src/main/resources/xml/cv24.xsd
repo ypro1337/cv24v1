@@ -86,6 +86,7 @@ elementFormDefault="qualified" >
 	<xs:sequence>
 		<xs:element ref="date" minOccurs="1" maxOccurs="1" />
 		<xs:element ref="institut" minOccurs="0" maxOccurs="1" />
+		<xs:element ref="titre" minOccurs="1" maxOccurs="5" />
 	</xs:sequence>
 	<xs:attribute name="niveau" type="niveau" use="required"/>
 </xs:complexType>

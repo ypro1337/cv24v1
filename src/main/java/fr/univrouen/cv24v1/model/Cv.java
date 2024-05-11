@@ -8,10 +8,7 @@
 
 package fr.univrouen.cv24v1.model;
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.*;
 
 
 /**
@@ -41,6 +38,23 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlType(name = "cv", propOrder = {
 
 })
+@XmlSeeAlso({
+        Identite.class,
+        Genre.class,
+        Cert.class,
+        Certif.class,
+        Competences.class,
+        Detail.class,
+        Diplome.class,
+        Divers.class,
+        Lv.class,
+        Nivs.class,
+        Objectif.class,
+        Prof.class,
+        Statut.class,
+        Autre.class
+})
+@XmlRootElement(name = "cv24", namespace = "http://univrouen.fr/cv24v1/model")
 public class Cv {
 
     @XmlElement(required = true)

@@ -35,6 +35,9 @@
     <cv:diplome niveau="5">
       <cv:date>2025-06-30T09:30:00Z</cv:date>
       <cv:institut>Univ Rouen</cv:institut>
+      <cv:titre>Bachelor In Computer Science</cv:titre>
+      <cv:titre>License En Informatique</cv:titre>
+
     </cv:diplome>
     <cv:certif>
       <cv:datedeb>2023-10-21T09:30:00Z</cv:datedeb>
