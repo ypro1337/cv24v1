@@ -31,7 +31,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _Cv24_QNAME = new QName("http://univrouen.fr/cv24v1/model", "cv24");
+    private final static QName _Cv24_QNAME = new QName("http://univrouen.fr/cv24v1/model", "cv24v1");
     private final static QName _Identite_QNAME = new QName("http://univrouen.fr/cv24v1/model", "identite");
     private final static QName _Genre_QNAME = new QName("http://univrouen.fr/cv24v1/model", "genre");
     private final static QName _Nom_QNAME = new QName("http://univrouen.fr/cv24v1/model", "nom");
@@ -156,7 +156,7 @@ public class ObjectFactory {
      * @return
      *     the new instance of {@link JAXBElement }{@code <}{@link Cv }{@code >}
      */
-    @XmlElementDecl(namespace = "http://univrouen.fr/cv24v1/model", name = "cv24")
+    @XmlElementDecl(namespace = "http://univrouen.fr/cv24v1/model", name = "cv24v1")
     public JAXBElement<Cv> createCv24(Cv value) {
         return new JAXBElement<Cv>(_Cv24_QNAME, Cv.class, null, value);
     }

@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=cvdb
+      - MYSQL_USER=cvuser
+      - MYSQL_PASSWORD=cvpassword
+    ports:
+      - "3306:3306"
+    networks:
+      - springboot-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  springboot-app:
+    image: cv24v1-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: springboot-app
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://mariadb:3306/cvdb
+      - SPRING_DATASOURCE_USERNAME=cvuser
+      - SPRING_DATASOURCE_PASSWORD=cvpassword
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.mariadb.jdbc.Driver
+    depends_on:
+      mariadb:
+        condition: service_started
+    ports:
+      - "8080:8080"
+    networks:
+      - springboot-network
+
+networks:
+  springboot-network:
+    driver: bridge
