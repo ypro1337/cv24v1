@@ -19,21 +19,18 @@ import java.time.LocalDateTime;
 })
 public class Certif implements Serializable {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @XmlTransient
+    @Column(name = "id")
     private Long id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "competences_id")
-    @XmlTransient
-    private Competences competences;
 
     @XmlElement(required = true)
     @Column(nullable = false)
     private String datedeb;
 
-    @Column
+    @Column(name = "datefin")
     private String datefin;
 
     @XmlElement(required = true)
@@ -47,14 +44,6 @@ public class Certif implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Competences getCompetences() {
-        return competences;
-    }
-
-    public void setCompetences(Competences competences) {
-        this.competences = competences;
     }
 
     public String getDatedeb() {

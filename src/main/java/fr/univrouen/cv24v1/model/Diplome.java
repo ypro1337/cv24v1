@@ -23,18 +23,21 @@ public class Diplome implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @XmlTransient
+    @Column(name = "id")
     private Long id;
 
     @XmlElement(required = true)
+    @Column(name = "date")
     private String date;
 
     @XmlElement
+    @Column(name = "institut")
     private String institut;
 
     @XmlElement(required = true)
     @ElementCollection(fetch = FetchType.LAZY) // Ensure collection fetch type is lazy
-    @CollectionTable(name = "diplometitre", joinColumns = @JoinColumn(name = "diplome_id"))
-    @Column(name = "titre")
+    @CollectionTable(name = "diplometitre", joinColumns = @JoinColumn(name = "diplome_id",nullable = false))
+    @Column(name = "titre",nullable = false)
     private List<String> titre;
 
     @XmlAttribute(name = "niveau", required = true)
@@ -64,14 +67,14 @@ public class Diplome implements Serializable {
         this.institut = institut;
     }
 
-    public List<String> getTitre() {
+    public List<String> getTitres() {
         if (titre == null) {
             titre = new ArrayList<>();
         }
         return this.titre;
     }
 
-    public void setTitre(List<String> titre) {
+    public void setTitres(List<String> titre) {
         this.titre = titre;
     }
 

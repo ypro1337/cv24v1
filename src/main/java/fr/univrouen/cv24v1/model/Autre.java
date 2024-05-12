@@ -18,10 +18,6 @@ public class Autre implements Serializable {
     @XmlTransient
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "divers_id")
-    @XmlTransient
-    private Divers divers;
 
     @XmlAttribute(name = "titre", required = true)
     @Column(length = 32, nullable = false)
@@ -38,14 +34,6 @@ public class Autre implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Divers getDivers() {
-        return divers;
-    }
-
-    public void setDivers(Divers divers) {
-        this.divers = divers;
     }
 
     public String getTitre() {

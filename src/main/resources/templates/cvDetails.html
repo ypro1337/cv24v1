@@ -71,10 +71,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="detail : ${cv.prof.detail}">
+    <tr th:each="detail : ${cv.prof.details}">
         <td th:text="${detail.datedeb}"></td>
         <td th:text="${detail.datefin}"></td>
-        <td th:text="${detail.titre}"></td>
+        <td th:text="${detail.getTitre()}"></td>
     </tr>
     </tbody>
 </table>
@@ -91,10 +91,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="diplome : ${cv.competences.diplome}">
+    <tr th:each="diplome : ${cv.competences.diplomes}">
         <td th:text="${diplome.date}"></td>
         <td th:text="${diplome.institut}"></td>
-        <td th:each="titre : ${diplome.titre}" th:text="${titre}" th:utext="${titre}"></td>
+        <td th:each="titre : ${diplome.getTitres()}" th:text="${titre}" th:utext="${titre}"></td>
         <td th:text="${diplome.niveau}"></td>
     </tr>
     </tbody>
@@ -110,7 +110,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="certif : ${cv.competences.certif}">
+    <tr th:each="certif : ${cv.competences.certifs}">
         <td th:text="${certif.datedeb}"></td>
         <td th:text="${certif.datefin}"></td>
         <td th:text="${certif.titre}"></td>

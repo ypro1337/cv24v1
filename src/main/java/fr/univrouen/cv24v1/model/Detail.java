@@ -22,10 +22,6 @@ public class Detail implements Serializable {
     @XmlTransient
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "prof_id")
-    @XmlTransient
-    private Prof prof;
 
     @XmlElement(required = true)
     private String datedeb;
@@ -44,13 +40,6 @@ public class Detail implements Serializable {
         this.id = id;
     }
 
-    public Prof getProf() {
-        return prof;
-    }
-
-    public void setProf(Prof prof) {
-        this.prof = prof;
-    }
 
     public String getDatedeb() {
         return datedeb;

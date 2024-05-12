@@ -18,11 +18,6 @@ public class Lv implements Serializable {
     @XmlTransient
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "divers_id")
-    @XmlTransient
-    private Divers divers;
-
     @XmlAttribute(name = "lang", required = true)
     @Column(nullable = false)
     private String lang;
@@ -46,14 +41,6 @@ public class Lv implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Divers getDivers() {
-        return divers;
-    }
-
-    public void setDivers(Divers divers) {
-        this.divers = divers;
     }
 
     public String getLang() {

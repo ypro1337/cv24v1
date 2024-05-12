@@ -22,7 +22,8 @@ public class Prof implements Serializable {
     @XmlTransient
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "prof")
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @XmlElement(required = true)
     private List<Detail> detail;
 
@@ -35,14 +36,14 @@ public class Prof implements Serializable {
         this.id = id;
     }
 
-    public List<Detail> getDetail() {
+    public List<Detail> getDetails() {
         if (detail == null) {
             detail = new ArrayList<>();
         }
         return this.detail;
     }
 
-    public void setDetail(List<Detail> detail) {
+    public void setDetails(List<Detail> detail) {
         this.detail = detail;
     }
 }

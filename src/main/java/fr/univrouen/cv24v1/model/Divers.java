@@ -23,11 +23,12 @@ public class Divers implements Serializable {
     @XmlTransient
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "divers")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @XmlElement(required = true)
     private List<Lv> lv;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "divers")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @XmlElement
     private List<Autre> autre;
 
     // Getters and setters

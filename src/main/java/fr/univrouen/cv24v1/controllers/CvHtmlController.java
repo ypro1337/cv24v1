@@ -12,8 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-public class CvResumeController {
-
+public class CvHtmlController {
     @Autowired
     private CvRepository cvRepository;
 
@@ -28,6 +27,7 @@ public class CvResumeController {
         // Return the name of the Thymeleaf template to render
         return "resume";
     }
+
     @GetMapping("/cv24/html")
     public String showCvDetails(@RequestParam Long id, Model model) {
         // Fetch the CV by id from the repository

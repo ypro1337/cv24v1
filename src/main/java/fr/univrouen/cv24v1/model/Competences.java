@@ -22,15 +22,17 @@ public class Competences implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @XmlTransient
+    @Column(name = "id")
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "competences_id")
     @XmlElement(required = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Diplome> diplome;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "competences")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Certif> certif;
+
+
 
     // Getters and setters
     public Long getId() {
@@ -41,25 +43,25 @@ public class Competences implements Serializable {
         this.id = id;
     }
 
-    public List<Diplome> getDiplome() {
+    public List<Diplome> getDiplomes() {
         if (diplome == null) {
             diplome = new ArrayList<>();
         }
         return this.diplome;
     }
 
-    public void setDiplome(List<Diplome> diplome) {
+    public void setDiplomes(List<Diplome> diplome) {
         this.diplome = diplome;
     }
 
-    public List<Certif> getCertif() {
+    public List<Certif> getCertifs() {
         if (certif == null) {
             certif = new ArrayList<>();
         }
         return this.certif;
     }
 
-    public void setCertif(List<Certif> certif) {
+    public void setCertifs(List<Certif> certif) {
         this.certif = certif;
     }
 }
