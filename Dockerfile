@@ -1,3 +1,9 @@
+#First build the project
+FROM maven:3.8.4-openjdk-17 as builder
+WORKDIR /cv24v1
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
 # Use an official Java runtime as a parent image
 FROM openjdk:17-jdk-alpine
 
