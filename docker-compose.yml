@@ -33,7 +33,7 @@ services:
       - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.mariadb.jdbc.Driver
     depends_on:
       mariadb:
-        condition: service_started
+        condition: service_healthy
     ports:
       - "8080:8080"
     networks:
