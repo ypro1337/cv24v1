@@ -21,7 +21,7 @@ public class Objectif implements Serializable {
     private Long id;
 
     @XmlValue
-    @Column(length = 128)
+    @Column(length = 128,name = "\"value\"")
     private String value;
 
     @XmlAttribute(name = "statut", required = true)
