@@ -5,10 +5,10 @@ services:
     image: mysql:8
     container_name: mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=rootpassword
-      - MYSQL_DATABASE=cvdb
-      - MYSQL_USER=cvuser
-      - MYSQL_PASSWORD=cvpassword
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ADDON_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_ADDON_DB}
+      - MYSQL_USER=${MYSQL_ADDON_USER}
+      - MYSQL_PASSWORD=${MYSQL_ADDON_PASSWORD}
     ports:
       - "3306:3306"
     networks:
@@ -26,10 +26,10 @@ services:
       dockerfile: Dockerfile
     container_name: springboot-app
     environment:
-      - SPRING_PROFILES_ACTIVE=local
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/cvdb
-      - SPRING_DATASOURCE_USERNAME=cvuser
-      - SPRING_DATASOURCE_PASSWORD=cvpassword
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_DATASOURCE_URL=jdbc:mysql://${MYSQL_ADDON_HOST}:${MYSQL_ADDON_PORT}/${MYSQL_ADDON_DB}
+      - SPRING_DATASOURCE_USERNAME=${MYSQL_ADDON_USER}
+      - SPRING_DATASOURCE_PASSWORD=${MYSQL_ADDON_PASSWORD}
       - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
     depends_on:
       mysql:

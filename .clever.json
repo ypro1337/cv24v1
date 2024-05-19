@@ -1,0 +1,12 @@
+{
+  "apps": [
+    {
+      "app_id": "app_bc6f87b2-e6cb-4166-b3f4-c3e0b9b5e9ea",
+      "org_id": "user_6a444e98-1300-493f-94d8-5f6343918bac",
+      "deploy_url": "https://github.com/ypro1337/cv24v1.git",
+      "git_ssh_url": "https://github.com/ypro1337/cv24v1.git",
+      "name": "cv24v1",
+      "alias": "cv24v1"
+    }
+  ]
+}

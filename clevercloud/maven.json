@@ -4,6 +4,6 @@
  "goal": "package"
  },
  "deploy": {
- "goal": "spring-boot:run"
+ "goal": "docker compose -f docker-compose.prod.yml up --build"
  }
 }
