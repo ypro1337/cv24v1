@@ -2,6 +2,7 @@ package fr.univrouen.cv24v1.controllers;
 
 import fr.univrouen.cv24v1.model.*;
 import fr.univrouen.cv24v1.repository.CvRepository;
+import fr.univrouen.cv24v1.services.CvService;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
@@ -31,46 +32,16 @@ public class CvXmlController {
     @Autowired
     private CvRepository cvRepository;
 
+    @Autowired
+    private CvService cvService;
+
     private static final String XML_DEFAULT_SCHEMA = "xml/cv24.xsd";
 
     @GetMapping(value = "/resume/xml", produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> showCvResumeXml() throws JAXBException, IllegalAnnotationException {
         List<Cv> cvs = cvRepository.findAll();
-        List<CvResume> cvResumes = cvs.stream().map(cv -> {
-            CvResume resume = new CvResume();
-            resume.setId(cv.getId());
-
-            Identite identite = new Identite();
-            identite.setGenre(cv.getIdentite().getGenre());
-            identite.setNom(cv.getIdentite().getNom());
-            identite.setPrenom(cv.getIdentite().getPrenom());
-            resume.setIdentite(identite);
-
-            resume.setObjectif(cv.getObjectif());
-
-            List<Diplome> diplomes = cv.getCompetences().getDiplomes();
-            Optional<Diplome> highestNiveauDiplome = diplomes.stream()
-                    .max(Comparator.comparingInt(Diplome::getNiveau));
-            Optional<Diplome> lastAddedDiplome = diplomes.stream()
-                    .max(Comparator.comparing(Diplome::getId));
-
-            resume.setDiplome(highestNiveauDiplome.orElse(lastAddedDiplome.orElse(null)));
-
-            return resume;
-        }).collect(Collectors.toList());
-
-        CvResumeWrapper wrapper = new CvResumeWrapper();
-        wrapper.setCvResumes(cvResumes);
-
-
-        JAXBContext context = JAXBContext.newInstance(CvResumeWrapper.class);
-        Marshaller marshaller = context.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-
-        StringWriter sw = new StringWriter();
-        marshaller.marshal(wrapper, sw);
-        return new ResponseEntity<>(sw.toString(), HttpStatus.OK);
-
+        List<CvResume> cvResumes = cvService.transformCvsToResumes(cvs);
+        return marshalAndRespond(cvResumes);
     }
 
 
@@ -106,5 +77,34 @@ public class CvXmlController {
             String errorXml = String.format("<error><id>%d</id><status>ERROR</status></error>", id);
             return new ResponseEntity<>(errorXml, HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping(value = "/cv24/search", produces = MediaType.APPLICATION_XML_VALUE)
+    public ResponseEntity<String> searchCvs(@RequestParam(value = "nom", required = false) String nom,
+                                            @RequestParam(value = "prenom", required = false) String prenom,
+                                            @RequestParam(value = "objectif", required = false) String objectif) {
+        try {
+            // Filter Cvs and transform them to resumes
+            List<Cv> filteredCvs = cvRepository.findByNomOrPrenomOrObjectifValueContaining(nom,prenom,objectif);
+            List<CvResume> cvResumes = cvService.transformCvsToResumes(filteredCvs);
+            return marshalAndRespond(cvResumes);
+        } catch (JAXBException e) {
+            return ResponseEntity.internalServerError().body("<response><status>ERROR</status><detail>No Such Field</detail></response>");
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body("<response><status>ERROR</status><detail>Unknown error occurred.</detail></response>");
+        }
+    }
+
+    private ResponseEntity<String> marshalAndRespond(List<CvResume> cvResumes) throws JAXBException {
+        CvResumeWrapper wrapper = new CvResumeWrapper();
+        wrapper.setCvResumes(cvResumes);
+
+        JAXBContext context = JAXBContext.newInstance(CvResumeWrapper.class);
+        Marshaller marshaller = context.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+        StringWriter sw = new StringWriter();
+        marshaller.marshal(wrapper, sw);
+        return ResponseEntity.ok(sw.toString());
     }
 }

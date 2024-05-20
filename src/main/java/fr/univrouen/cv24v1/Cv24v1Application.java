@@ -1,4 +1,4 @@
-package fr.univrouen.cv24;
+package fr.univrouen.cv24v1;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication(scanBasePackages = "fr.univrouen.cv24v1")
 @EnableJpaRepositories(basePackages = "fr.univrouen.cv24v1.repository")
-@ComponentScan(basePackages = {"fr.univrouen.cv24v1.controllers"})
+@ComponentScan(basePackages = {"fr.univrouen.cv24v1.controllers","fr.univrouen.cv24v1.services"})
 @EntityScan(basePackages = "fr.univrouen.cv24v1.model")
 public class Cv24v1Application {
 

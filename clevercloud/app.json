@@ -1,0 +1,12 @@
+{
+  "name": "cv24v1",
+  "type": "docker",
+  "description": "My CV Application",
+  "env": {
+    "JAVA_VERSION": "17",
+    "SPRING_PROFILES_ACTIVE": "prod"
+  },
+  "deploy": {
+    "goal": "docker-compose -f docker-compose.prod.yml up --build"
+  }
+}
