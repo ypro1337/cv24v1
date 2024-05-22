@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'accueil de votre projet</title>
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
+</head>
+<body>
+<!-- Inclusion du header -->
+<div th:replace="fragements/header :: header"></div>
+
+<div class="content">
+    <h2>Membres de l'équipe</h2>
+    <p>MOKRANI Yahia</p>
+    <p>FEKRAOUI Fatma</p>
+    <h3>Groupe : 4</h3>
+    <img src="/photos/logouniversite.png" alt="Logo de l'Université de Rouen">
+    <img id="ufr" src="/photos/ufr.png" alt="Logo UFR Sciences et Techniques">
+</div>
+
+<!-- Inclusion du footer.html -->
+<div th:replace="fragements/footer :: footer"></div>
+</body>
+</html>

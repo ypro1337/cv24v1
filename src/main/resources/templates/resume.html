@@ -1,46 +1,12 @@
-<!-- Formater l'affichage des cvs-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>CV Resume</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
 </head>
 <body>
-<h1>CV Resume</h1>
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Genre</th>
-        <th>Nom</th>
-        <th>Prénom</th>
-        <th>Téléphone</th>
-        <th>Email</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="cv : ${cvs}">
-        <td th:text="${cv.id}"></td>
-        <td th:text="${cv.identite.genre}"></td>
-        <td th:text="${cv.identite.nom}"></td>
-        <td th:text="${cv.identite.prenom}"></td>
-        <td th:text="${cv.identite.tel}"></td>
-        <td th:text="${cv.identite.mel}"></td>
-    </tr>
-    </tbody>
-</table>
+    <div th:replace="fragements/header :: header"></div>
+    <div th:utext="${htmlContent}"></div>
+    <div th:replace="fragements/footer :: footer"></div>
 </body>
 </html>

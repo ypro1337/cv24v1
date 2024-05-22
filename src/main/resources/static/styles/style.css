@@ -1,0 +1,107 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #005792;
+    color: white;
+    padding: 10px 5px; /* Réduit l'espace de padding */
+    text-align: center;
+}
+
+header h3 {
+    margin: 0;
+    font-size: 1.5em; /* Taille du titre réduite */
+}
+
+header h4 {
+    margin: 5px 0;
+    font-size: 1.2em; /* Taille du titre réduite */
+}
+
+header h5 {
+    margin: 5px 0;
+    font-size: 1em; /* Taille du titre réduite */
+}
+
+.content {
+    padding: 20px;
+    text-align: center;
+}
+
+.content h2 {
+    color: #005792;
+    margin: 10px 0; /* Réduit l'espace de margin */
+}
+
+.content p {
+    font-size: 16px;
+    color: #666;
+    margin: 5px 0;
+}
+
+.content img {
+    width: 100px;
+    height: auto;
+    margin: 10px 20px;
+}
+
+footer {
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 5px 0; /* Réduit l'espace de padding */
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+footer h5 {
+    font-size: 1em; /* Taille du titre réduite */
+    margin: 5px 0; /* Réduit l'espace de margin */
+}
+
+footer p {
+    font-size: 0.9em; /* Taille du texte réduite */
+    margin: 2px 0; /* Réduit l'espace de margin */
+}
+#ufr {
+    margin-bottom: 5px; /* Ajoute un espace en bas du logo */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+table th, table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #005792;
+    color: white;
+}
+
+table tr:nth-child(even) {
+    background-color: #f4f4f9;
+}
+
+/* Change color on row hover */
+table tr:hover {
+    background-color: #d1e7fd; /* Light blue color */
+}
+
+/* Change color on row selected */
+table tr.selected {
+    background-color: #a4c8e8; /* Slightly darker blue */
+}
