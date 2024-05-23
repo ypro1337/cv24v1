@@ -24,27 +24,18 @@ public class CvHtmlController {
     @Autowired
     private CvRepository cvRepository;
 
-    // Méthode utilitaire pour générer un message d'erreur XML
-    private String generateErrorXml(Long id, String status) {
-        return "<error>" +
-                "<id>" + id + "</id>" +
-                "<status>" + status + "</status>" +
-                "</error>";
-    }
-
     @GetMapping("/cv24/resume")
     public String showCvResume(Model model) {
-        // Fetch all CVs from the repository
         List<Cv> cvs = cvRepository.findAll();
 
-        // Handle the case where no CVs are found
+        // le cas ou il y a aucun cv
         if (cvs.isEmpty()) {
             model.addAttribute("status", "ERROR");
             model.addAttribute("message", "No CVs found");
-            return "error"; // You can create an error.html template to display errors
+            return "error";
         }
 
-        // Convert CVs to XML format
+        // convertir les cvs en xml
         StringBuilder xml = new StringBuilder();
         xml.append("<cvs>");
         for (Cv cv : cvs) {
@@ -58,7 +49,7 @@ public class CvHtmlController {
             xml.append("<objectif statut=\"").append(cv.getObjectif().getStatut()).append("\">");
             xml.append(cv.getObjectif().getValue()).append("</objectif>");
 
-            // Select the highest or most recent diploma
+
             cv.getCompetences().getDiplomes().stream()
                     .max(Comparator.comparing(diplome -> diplome.getDate()))
                     .ifPresent(diplome -> {
@@ -71,7 +62,7 @@ public class CvHtmlController {
         }
         xml.append("</cvs>");
 
-        // Perform XSLT transformation
+        //transformation xslt
         try (InputStream xsltStream = getClass().getResourceAsStream("/xslt/cv.xslt")) {
             if (xsltStream == null) {
                 throw new RuntimeException("XSLT file not found");
@@ -90,10 +81,10 @@ public class CvHtmlController {
             e.printStackTrace();
             model.addAttribute("status", "ERROR");
             model.addAttribute("message", "Error processing CVs");
-            return "error"; // You can create an error.html template to display errors
+            return "error";
         }
 
-        // Return the name of the Thymeleaf template to render
+        model.addAttribute("currentPage", "resume");
         return "resume";
     }
 
@@ -106,7 +97,7 @@ public class CvHtmlController {
             // Handle the case where the CV is not found
             model.addAttribute("status", "ERROR");
             model.addAttribute("message", "CV not found");
-            return "error"; // You can create an error.html template to display errors
+            return "error";
         }
 
         // Convert the found CV to XML format
@@ -202,10 +193,10 @@ public class CvHtmlController {
             e.printStackTrace();
             model.addAttribute("status", "ERROR");
             model.addAttribute("message", "Error processing CV");
-            return "error"; // You can create an error.html template to display errors
+            return "error";
         }
 
-        // Return the name of the Thymeleaf template to render
+
         return "cvDetails";
     }
 }

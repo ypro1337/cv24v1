@@ -5,7 +5,7 @@ body {
     margin: 0;
     padding: 0;
 }
-
+/*le style pour le header*/
 header {
     background-color: #005792;
     color: white;
@@ -27,7 +27,7 @@ header h5 {
     margin: 5px 0;
     font-size: 1em;
 }
-
+/* le style pour le contenu de la page d'accuiel */
 .content {
     padding: 20px;
     text-align: center;
@@ -35,7 +35,7 @@ header h5 {
 
 .content h2 {
     color: #005792;
-    margin: 10px 0; /* Réduit l'espace de margin */
+    margin: 10px 0;
 }
 
 .content p {
@@ -54,7 +54,7 @@ footer {
     background-color: #003366;
     color: white;
     text-align: center;
-    padding: 5px 0; /* Réduit l'espace de padding */
+    padding: 5px 0;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -62,18 +62,18 @@ footer {
 }
 
 footer h5 {
-    font-size: 1em; /* Taille du titre réduite */
-    margin: 5px 0; /* Réduit l'espace de margin */
+    font-size: 1em;
+    margin: 5px 0;
 }
 
 footer p {
-    font-size: 0.9em; /* Taille du texte réduite */
+    font-size: 0.9em;
     margin: 2px 0;
 }
 #ufr {
-    margin-bottom: 5px; /* Ajoute un espace en bas du logo */
+    margin-bottom: 5px;
 }
-
+/* style pour tous les tableau */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -100,9 +100,37 @@ table tr:hover {
     background-color: #d1e7fd;
 }
 
-
 table tr.selected {
     background-color: #a4c8e8;
 }
-
-
+.navbar {
+    margin-top: auto; /* Place the navbar at the bottom */
+    background-color: #005792;
+    padding: 10px 0;
+}
+.navbar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+.navbar ul li {
+    margin: 0 15px;
+}
+.navbar ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+.navbar ul li a:hover {
+    background-color: #1b2e45;
+    color: #ffffff;
+}
+.navbar ul li a.active {
+    background-color: #ff6600;
+    color: #ffffff;
+}

@@ -9,14 +9,13 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(Model model) {
-        // Ajoutez ici des attributs à votre modèle si nécessaire
-        // model.addAttribute("key", "value");
-
+        model.addAttribute("currentPage", "accueil");
         return "index"; // Recherche un fichier "index.html" dans src/main/resources/templates
     }
 
     @GetMapping("/help")
-    public String help() {
+    public String help(Model model) {
+        model.addAttribute("currentPage", "aide");
         return "help"; // Recherche un fichier "help.html" dans src/main/resources/templates
     }
 }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>navbar</title>
+</head>
+<body>
+<div th:fragment="links">
+<nav class="navbar">
+    <ul>
+        <li th:if="${currentPage != 'accueil'}">
+            <a th:href="@{/}">Accueil</a>
+        </li>
+        <li th:if="${currentPage != 'aide'}">
+            <a th:href="@{/help}">Aide</a>
+        </li>
+        <li th:if="${currentPage != 'resume'}">
+            <a th:href="@{/cv24/resume}">Liste des CVs</a>
+        </li>
+    </ul>
+</nav>
+</div>
+</body>
+</html>
