@@ -1,0 +1,37 @@
+     table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    }
+                    th, td {
+                    padding: 8px;
+                    text-align: left;
+                    border-bottom: 1px solid #ddd;
+                    }
+                    th {
+                    background-color: #f2f2f2;
+                    }
+     .details-button, .delete-button {
+         padding: 5px 10px;
+         margin-right: 5px;
+         background-color: #007BFF;
+         color: white;
+         border: none;
+         border-radius: 4px;
+         cursor: pointer;
+     }
+
+     .details-button:hover, .delete-button:hover {
+         background-color: #00561b;
+     }
+
+     .delete-button {
+         background-color: #dc3545;
+     }
+
+     .delete-button:hover {
+         background-color: #c82333;
+     }
+
+     table tr.select td.action-column {
+         background-color: #ffffff !important;
+     }

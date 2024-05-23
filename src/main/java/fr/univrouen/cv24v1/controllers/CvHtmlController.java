@@ -3,8 +3,6 @@ package fr.univrouen.cv24v1.controllers;
 import fr.univrouen.cv24v1.model.Cv;
 import fr.univrouen.cv24v1.repository.CvRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -74,7 +72,7 @@ public class CvHtmlController {
         xml.append("</cvs>");
 
         // Perform XSLT transformation
-        try (InputStream xsltStream = getClass().getResourceAsStream("/templates/cv.xslt")) {
+        try (InputStream xsltStream = getClass().getResourceAsStream("/xslt/cv.xslt")) {
             if (xsltStream == null) {
                 throw new RuntimeException("XSLT file not found");
             }
@@ -186,7 +184,7 @@ public class CvHtmlController {
         xml.append("</cv>");
 
         // Perform XSLT transformation
-        try (InputStream xsltStream = getClass().getResourceAsStream("/templates/cvDetails.xslt")) {
+        try (InputStream xsltStream = getClass().getResourceAsStream("/xslt/cvDetails.xslt")) {
             if (xsltStream == null) {
                 throw new RuntimeException("XSLT file not found");
             }

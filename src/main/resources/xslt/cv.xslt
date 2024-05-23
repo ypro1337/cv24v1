@@ -3,32 +3,8 @@
         <html>
             <head>
                 <title>CV Resume</title>
-                <style>
-                    table {
-                    width: 100%;
-                    border-collapse: collapse;
-                    }
-                    th, td {
-                    padding: 8px;
-                    text-align: left;
-                    border-bottom: 1px solid #ddd;
-                    }
-                    th {
-                    background-color: #f2f2f2;
-                    }
-                    button {
-                    padding: 5px 10px;
-                    margin-right: 5px;
-                    background-color: #4CAF50; /* Green */
-                    color: white;
-                    border: none;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    }
-                    button:hover {
-                    background-color: #45a049;
-                    }
-                </style>
+                <link rel="stylesheet" type="text/css" href="/styles/stylecv.css"/>
+                <script src="/js/script.js"></script>
             </head>
             <body>
                 <h1>CV Resume</h1>
@@ -47,7 +23,7 @@
                     </thead>
                     <tbody>
                         <xsl:for-each select="cvs/cv">
-                            <tr>
+                            <tr class="select">
                                 <td><xsl:value-of select="id"/></td>
                                 <td><xsl:value-of select="identite/genre"/></td>
                                 <td><xsl:value-of select="identite/nom"/></td>
@@ -55,9 +31,16 @@
                                 <td><xsl:value-of select="objectif"/></td>
                                 <td><xsl:value-of select="objectif/@statut"/></td>
                                 <td><xsl:value-of select="diplome/titre"/></td>
-                                <td>
-                                    <button onclick="window.location.href='html?id={id}'">Détails</button>
-                                    <button onclick="confirm('Êtes-vous sûr de vouloir supprimer ce CV?') &amp;&amp; window.location.href='cv24/delete?id={id}'">Supprimer</button>
+                                <td class="action-column">
+                                    <button class="details-button" onclick="window.location.href='html?id={id}'">Détails</button>
+                                    <button class="delete-button" onclick="deleteCv({id})">
+                                        <xsl:attribute name="onclick">
+                                            <xsl:text>deleteCv(</xsl:text>
+                                            <xsl:value-of select="id"/>
+                                            <xsl:text>)</xsl:text>
+                                        </xsl:attribute>
+                                        Supprimer
+                                    </button>
                                 </td>
                             </tr>
                         </xsl:for-each>
