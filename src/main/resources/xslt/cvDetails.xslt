@@ -1,7 +1,7 @@
-
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:cv="http://univrouen.fr/cv24v1/model">
+    <xsl:output method="html" version="1.0" indent="yes"/>
     <xsl:template match="/">
-        <html>
+
             <head>
                 <title>CV Details</title>
                 <link rel="stylesheet" type="text/css" href="/styles/styledetails.css"/>
@@ -13,28 +13,24 @@
                         <th colspan="2" class="section-header">Identité</th>
                     </tr>
                     <tr>
-                        <th>ID</th>
-                        <td><xsl:value-of select="cv/id"/></td>
-                    </tr>
-                    <tr>
                         <th>Genre</th>
-                        <td><xsl:value-of select="cv/identite/genre"/></td>
+                        <td><xsl:value-of select="cv:cv24/cv:identite/cv:genre"/></td>
                     </tr>
                     <tr>
                         <th>Nom</th>
-                        <td><xsl:value-of select="cv/identite/nom"/></td>
+                        <td><xsl:value-of select="cv:cv24/cv:identite/cv:nom"/></td>
                     </tr>
                     <tr>
                         <th>Prénom</th>
-                        <td><xsl:value-of select="cv/identite/prenom"/></td>
+                        <td><xsl:value-of select="cv:cv24/cv:identite/cv:prenom"/></td>
                     </tr>
                     <tr>
                         <th>Téléphone</th>
-                        <td><xsl:value-of select="cv/identite/tel"/></td>
+                        <td><xsl:value-of select="cv:cv24/cv:identite/cv:tel"/></td>
                     </tr>
                     <tr>
                         <th>Email</th>
-                        <td><xsl:value-of select="cv/identite/mel"/></td>
+                        <td><xsl:value-of select="cv:cv24/cv:identite/cv:mel"/></td>
                     </tr>
 
                     <tr>
@@ -42,46 +38,46 @@
                     </tr>
                     <tr>
                         <th>Objectif</th>
-                        <td><xsl:value-of select="cv/objectif/value"/></td>
+                        <td><xsl:value-of select="cv:cv24/cv:objectif"/></td>
                     </tr>
                     <tr>
                         <th>Statut</th>
-                        <td><xsl:value-of select="cv/objectif/statut"/></td>
+                        <td><xsl:value-of select="cv:cv24/cv:objectif/@statut"/></td>
                     </tr>
 
                     <tr>
                         <th colspan="2" class="section-header">Prof</th>
                     </tr>
-                    <xsl:for-each select="cv/prof/details/detail">
+                    <xsl:for-each select="cv:cv24/cv:prof/cv:detail">
                         <tr>
                             <th>Date Début</th>
-                            <td><xsl:value-of select="datedeb"/></td>
+                            <td><xsl:value-of select="cv:datedeb"/></td>
                         </tr>
                         <tr>
                             <th>Date Fin</th>
-                            <td><xsl:value-of select="datefin"/></td>
+                            <td><xsl:value-of select="cv:datefin"/></td>
                         </tr>
                         <tr>
                             <th>Titre</th>
-                            <td><xsl:value-of select="titre"/></td>
+                            <td><xsl:value-of select="cv:titre"/></td>
                         </tr>
                     </xsl:for-each>
 
                     <tr>
                         <th colspan="2" class="section-header">Compétences - Diplômes</th>
                     </tr>
-                    <xsl:for-each select="cv/competences/diplomes/diplome">
+                    <xsl:for-each select="cv:cv24/cv:competences/cv:diplome">
                         <tr>
                             <th>Date</th>
-                            <td><xsl:value-of select="date"/></td>
+                            <td><xsl:value-of select="cv:date"/></td>
                         </tr>
                         <tr>
                             <th>Institut</th>
-                            <td><xsl:value-of select="institut"/></td>
+                            <td><xsl:value-of select="cv:institut"/></td>
                         </tr>
                         <tr>
                             <th>Titre</th>
-                            <td><xsl:for-each select="titres/titre"><xsl:value-of select="."/><xsl:if test="position() != last()">, </xsl:if></xsl:for-each></td>
+                            <td><xsl:for-each select="cv:titre"><xsl:value-of select="."/><xsl:if test="position() != last()">, </xsl:if></xsl:for-each></td>
                         </tr>
                         <tr>
                             <th>Niveau</th>
@@ -92,25 +88,25 @@
                     <tr>
                         <th colspan="2" class="section-header">Compétences - Certifications</th>
                     </tr>
-                    <xsl:for-each select="cv/competences/certifs/certif">
+                    <xsl:for-each select="cv:cv24/cv:competences/cv:certif">
                         <tr>
                             <th>Date Début</th>
-                            <td><xsl:value-of select="datedeb"/></td>
+                            <td><xsl:value-of select="cv:datedeb"/></td>
                         </tr>
                         <tr>
                             <th>Date Fin</th>
-                            <td><xsl:value-of select="datefin"/></td>
+                            <td><xsl:value-of select="cv:datefin"/></td>
                         </tr>
                         <tr>
                             <th>Titre</th>
-                            <td><xsl:value-of select="titre"/></td>
+                            <td><xsl:value-of select="cv:titre"/></td>
                         </tr>
                     </xsl:for-each>
 
                     <tr>
                         <th colspan="2" class="section-header">Divers - Langues Vivantes</th>
                     </tr>
-                    <xsl:for-each select="cv/divers/lv/lv">
+                    <xsl:for-each select="cv:cv24/cv:divers/cv:lv">
                         <tr>
                             <th>Langue</th>
                             <td><xsl:value-of select="@lang"/></td>
@@ -132,7 +128,7 @@
                     <tr>
                         <th colspan="2" class="section-header">Divers - Autres</th>
                     </tr>
-                    <xsl:for-each select="cv/divers/autre">
+                    <xsl:for-each select="cv:cv24/cv:divers/cv:autre">
                         <tr>
                             <th>Titre</th>
                             <td><xsl:value-of select="@titre"/></td>
@@ -144,6 +140,6 @@
                     </xsl:for-each>
                 </table>
             </body>
-        </html>
+
     </xsl:template>
 </xsl:stylesheet>

@@ -15,12 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.xml.sax.SAXException;
+import fr.univrouen.cv24v1.util.MarshallingHelper;
 
-import javax.xml.XMLConstants;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
 import java.io.StringWriter;
-import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,10 +30,12 @@ public class CvXmlController {
     @Autowired
     private CvService cvService;
 
+    private MarshallingHelper helper;
+
     private static final String XML_DEFAULT_SCHEMA = "xml/cv24.xsd";
 
     @GetMapping(value = "/resume/xml", produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<String> showCvResumeXml() throws JAXBException, IllegalAnnotationException {
+    public ResponseEntity<String> showCvResumeXml() throws JAXBException {
         List<Cv> cvs = cvRepository.findAll();
         List<CvResume> cvResumes = cvService.transformCvsToResumes(cvs);
         return marshalAndRespond(cvResumes);
@@ -46,24 +45,12 @@ public class CvXmlController {
     @GetMapping(value = "/cv24/xml", produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> showCvXml(@RequestParam("id") Long id) {
         Optional<Cv> cvOpt = cvRepository.findById(id);
+        helper = MarshallingHelper.getInstance();
 
         if (cvOpt.isPresent()) {
             Cv cv = cvOpt.get();
             try {
-                JAXBContext context = JAXBContext.newInstance(Cv.class);
-                Marshaller marshaller = context.createMarshaller();
-                marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-
-                SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-                URL schemaURL = getClass().getClassLoader().getResource(XML_DEFAULT_SCHEMA);
-                if (schemaURL == null) {
-                    throw new SAXException("Schema file not found.");
-                }
-                Schema schema = schemaFactory.newSchema(schemaURL);
-                marshaller.setSchema(schema);
-
-                StringWriter sw = new StringWriter();
-                marshaller.marshal(cv, sw);
+                StringWriter sw = helper.marshalCv(cv,XML_DEFAULT_SCHEMA);
                 return new ResponseEntity<>(sw.toString(), HttpStatus.OK);
             } catch (JAXBException e) {
                 e.printStackTrace();
