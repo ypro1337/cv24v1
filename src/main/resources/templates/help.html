@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'aide - Service REST</title>
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
+</head>
+<body>
+
+<div th:replace="fragements/header :: header"></div>
+<div th:replace="fragements/links :: links"></div>
+
+<div class="content">
+
+    <h2>Aide  Service REST</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>URL</th>
+            <th>Méthode</th>
+            <th>Opération</th>
+            <th>Retour</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>/</td>
+            <td>GET</td>
+            <td>Affiche la page d'accueil</td>
+            <td>Format HTML </td>
+        </tr>
+        <tr>
+            <td>/help</td>
+            <td>GET</td>
+            <td>Affiche la page contenant les informations d'aide</td>
+            <td>Format HTML</td>
+        </tr>
+        <tr>
+            <td>/cv24/resume/xml</td>
+            <td>GET</td>
+            <td>Affiche la liste des CV stockés en XML</td>
+            <td>Flux XML</td>
+        </tr>
+        <tr>
+            <td>/cv24/resume</td>
+            <td>GET</td>
+            <td>Affiche la liste des CV stockés en HTML</td>
+            <td>Page HTML</td>
+        </tr>
+        <tr>
+            <td>/cv24/xml?id=&#60;id&#62;</td>
+            <td>GET</td>
+            <td>Affiche le contenu complet du CV dont l'identifiant est transmis en paramètre</td>
+            <td>Flux XML conforme au schéma xsd cv24</td>
+        </tr>
+        <tr>
+            <td>/cv24/html?id=&#60;id&#62;</td>
+            <td>GET</td>
+            <td>Affiche le contenu complet du CV dont l'identifiant est &#60;id&#62;</td>
+            <td>Page HTML</td>
+        </tr>
+        <tr>
+            <td>cv24/insert</td>
+            <td>POST</td>
+            <td>Ajout d'un CV dans la base</td>
+            <td>Flux XML retour avec statut</td>
+        </tr>
+        <tr>
+            <td>/cv24/delete</td>
+            <td>DELETE</td>
+            <td>Suppression du CV dont l'identifiant est &#60;id&#62;</td>
+            <td>Flux XML retour avec statut</td>
+        </tr>
+        <tr>
+            <td>/cv24/search?...</td>
+            <td>GET</td>
+            <td>Recherche la liste des spécifications répondant aux contraintes exprimées dans la requête</td>
+            <td>Flux XML comprenant la liste des articles répondant aux critères de recherche exprimés</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:replace="fragements/footer :: footer"></div>
+</body>
+</html>
