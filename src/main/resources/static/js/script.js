@@ -1,12 +1,12 @@
 function deleteCv(id) {
     if (confirm('Êtes-vous sûr de vouloir supprimer ce CV?')) {
-        fetch(`http://localhost:8080/cv24/delete?id=${id}`, {
+        fetch(`delete?id=${id}`, {
             method: 'DELETE'
         })
             .then(response => {
                 if (response.ok) {
                     alert('CV supprimé avec succès.');
-                    window.location.reload();
+                    window.location.reload(); // Reload the page to update the list or state
                 } else {
                     alert('Erreur lors de la suppression du CV.');
                 }
