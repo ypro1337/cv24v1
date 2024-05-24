@@ -15,9 +15,9 @@ services:
       - springboot-network
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      interval: 30s
+      timeout: 10s
+      retries: 10
 
   springboot-app:
     image: cv24v1-app

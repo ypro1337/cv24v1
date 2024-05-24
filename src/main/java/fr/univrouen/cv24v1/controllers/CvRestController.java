@@ -71,7 +71,7 @@ public class CvRestController {
     }
 
     @DeleteMapping("/cv24/delete")
-    public ResponseEntity<String> deleteCv(@RequestParam Long id) {
+    public ResponseEntity<String> deldeteCv(@RequestParam Long id) {
         Optional<Cv> cvOptional = cvRepository.findById(id);
 
         if (!cvOptional.isPresent()) {
